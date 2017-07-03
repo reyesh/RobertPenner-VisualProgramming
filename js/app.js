@@ -18,8 +18,13 @@ Vector.prototype.reset = function (x, y) {
   this.constructor(x, y);
 }
 
-var pos = new Vector(0, 0);
-var vel = new Vector(0, 0);
+Vector.prototype.getLength = function () {
+  return Math.sqrt(this.x*this.x + this.y*this.y);
+}
+
+var pos = new Vector(0, 100);
+var vel = new Vector(2, 2);
+var accel = new Vector(.1, 0);
 
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
@@ -43,21 +48,21 @@ function getRandomArbitraryRound(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-      function getMousePos(canvas, evt) {
-        var rect = canvas.getBoundingClientRect();
-        return {
-          x: evt.clientX - rect.left,
-          y: evt.clientY - rect.top
-        };
-      }
+function getMousePos(canvas, evt) {
+  var rect = canvas.getBoundingClientRect();
+  return {
+    x: evt.clientX - rect.left,
+    y: evt.clientY - rect.top
+  };
+}
       
-      canvas.addEventListener('mousemove', function(evt) {
-        mousePos = getMousePos(canvas, evt);
-        var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
-        //writeMessage(canvas, message);
-        //console.log(mousePos.x, mousePos.y);
-        console.log(message);
-      }, false);
+canvas.addEventListener('mousemove', function(evt) {
+  mousePos = getMousePos(canvas, evt);
+  var message = 'Mouse position: ' + mousePos.x + ',' + mousePos.y;
+  //writeMessage(canvas, message);
+  //console.log(mousePos.x, mousePos.y);
+  //console.log(message);
+}, false);
 
 animate();
 
@@ -67,17 +72,20 @@ function animate() {
 }
 
 function draw() {
-    //ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.font = "80px Arial";
-    ctx.fillStyle = colors[getRandomArbitraryRound(0,colors.length)];
-    ctx.fillText("Nintendo World",pos.x,pos.y);
-    //ctx.fillText(words[getRandomArbitraryRound(0,6)],pos.x,pos.y);
-    pos.plus(vel);
-    //vel.reset (getRandomArbitrary(-1,1), getRandomArbitrary(-1,1));   
-    vel.reset (mousePos.x/50, mousePos.y/50);  
-        pos.plus(vel);
+  //ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.font = "80px Arial";
+  ctx.fillStyle = colors[getRandomArbitraryRound(0,colors.length)];
+  //ctx.fillText(words[getRandomArbitraryRound(0,6)],pos.x,pos.y);
+  //pos.plus(vel);
+  //vel.reset (getRandomArbitrary(-1,1), getRandomArbitrary(-1,1));   
+  //vel.reset (mousePos.x/50, mousePos.y/50);  
+  vel.plus(accel);
+  pos.plus(vel);
+  ctx.fillText("Nintendo World 1",pos.x,pos.y);
 
-    //vel.reset ((-.5,.5), (-.5,.5));        
-    ////vel.toString();
+  //vel.reset ((-.5,.5), (-.5,.5));        
+  ////vel.toString();
 }
+
+console.log(vel.getLength());
 
