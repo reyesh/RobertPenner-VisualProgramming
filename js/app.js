@@ -1,4 +1,4 @@
-var canvas = document.getElementById("myCanvas");
+/* var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 ctx.fillStyle = "green";
 
@@ -37,12 +37,12 @@ canvas.addEventListener('click', function(evt) {
   //console.log(message);
 }, false);
 
-var pos = new Vector(50, 100);
+var pos = new Vector(10, 100);
 var vel = new Vector(-20, .6);
 var accel = new Vector(.2, .01);
 
 var velX = 0;
-var kFrictionAccel = .8;
+var kFrictionAccel = .2;
 var accelX = 0;
 
 function draw() {
@@ -56,14 +56,12 @@ function draw() {
   //accel.reset(getRandomArbitrary(-3,3),getRandomArbitrary(-3,3));
 
 
-  velX += accelX;
-  accelX = 0;
+  velX += accelX; accelX = 0; 
   if (velX > 0) {
-    velX = Math.max (0, velX - kFrictionAccel);
-  } else if (velX < 0) {
-    velX = Math.min(0, velX + kFrictionAccel);
-  }
-  //this._x += velX;
+   velX = Math.max (0, velX -
+  kFrictionAccel); 
+ } else if (velX < 0) { 
+  velX = Math.min(0, velX + kFrictionAccel); } //this._x += velX;
 
   //vel.plus(accel);
   //pos.plus(vel);
@@ -79,3 +77,6 @@ function animate() {
 }
 
 animate();
+*/
+var Canvas1 = new DrawClass("q", 600, 600);
+Canvas1.initCanvas();
