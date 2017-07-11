@@ -78,5 +78,23 @@ function animate() {
 
 animate();
 */
-var Canvas1 = new DrawClass("q", 600, 600);
+var Canvas1 = new DrawClass("q", 800, 600);
 Canvas1.initCanvas();
+//Canvas1.createTxt("https://www.google.com");
+var nameObj = new ShapeObj(Canvas1);
+//Canvas1.rotateCircle();
+var nameObj2 = new ShapeObj(Canvas1);
+
+
+function draw(){
+  nameObj.rotateCircle(1);
+  //nameObj2.rotateCircle(1);
+  //console.log("Asdf");
+}
+
+function animate() {
+    requestAnimationFrame(animate);
+    draw();
+}
+
+animate();

@@ -25,3 +25,23 @@ Vector.prototype.getLength = function() {
 Vector.prototype.plusNew = function(v){
   return new this.constructor(this.x + v.x, this.y + v.y);
 }
+
+Math.cosD = function (angle){
+  return Math.cos(angle * Math.PI / 180);
+}
+
+Math.sinD = function (angle){
+  return Math.sin(angle * (Math.PI / 180));
+}
+
+Math.polarToCartesian = function (p){
+	var x = p.r * Math.cosD (p.t);
+	var y = p.r * Math.sinD (p.t);
+	return { x:x, y:y };
+}
+
+Math.fixAngle = function (angle) {
+	angle %= 360;
+	return (angle < 0) ? angle + 360 : angle;
+}
+
